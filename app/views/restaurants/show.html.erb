@@ -1,0 +1,25 @@
+<div class="container" style="padding-top: 3.5rem;">
+  <div class="row">
+    <div class="col-lg-6">
+      <h1 class="my-4"><%= @restaurant.name %></h1>
+      <p><%= @restaurant.description %></p>
+
+      <hr>
+
+      <h4>Reviews</h4>
+      <% @restaurant.reviews.each do |review| %>
+        <div class="row">
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col-lg-3" style="padding-top: 3.5rem;">
+      <div class="span4">
+        <div class="widget map box-container">
+          <h3 class="widget-title">Map &amp; Directions</h3>
+          <%= tag.div nil, id: 'map', data: { marker: @restaurant.to_json } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

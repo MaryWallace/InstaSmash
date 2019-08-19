@@ -1,0 +1,57 @@
+  <!-- Page Content -->
+  <div class="container" style="padding-top: 3.5rem;">
+    <div class="row">
+      <div class="col-lg-3">
+        <h1 class="my-4">InstaSmash</h1>
+        <p>Quick restaurant search for when you're trying to smash!</p>
+
+        <div class="l-section">
+          <div class="row form-vertical">
+            <%= form_tag restaurants_path, method: :get do %>
+              <div class="col-3 push-1">
+                <%= text_field_tag :search, params[:search], placeholder: "I'm hungry for..." %>
+              </div >
+              <div class="col-2">
+                <div class="label-select">
+                </div>
+              </div>
+              <div class="col-1">
+                <%= submit_tag "Search", name: nil, class: "button button--large button--full-res" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-lg-9" style="padding-top: 3.5rem;">
+        <div class="row">
+          <% @restaurants.each do |restaurant| %>
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="<%=restaurant_path(restaurant) %>">
+                  <img class="card-img-top" src="<%= restaurant.image_url %>" alt="">
+                </a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <%= link_to restaurant.name, restaurant_path(restaurant) %>
+                  </h4>
+                  <h5><%= restaurant.name %></h5>
+                  <p class="card-text">
+                    <%= restaurant.description %>
+                  </p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">
+                    <% restaurant.rating.to_i.times do %>
+                      &#9733;
+                    <% end %>
+                  </small>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
